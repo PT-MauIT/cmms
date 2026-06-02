@@ -15,7 +15,10 @@ services:
       timeout: 5s
       retries: 10
   api:
-    image: intelloop/atlas-cmms-backend
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: parquetempisque/atlas-cmms-backend:local
     container_name: atlas-cmms-backend
     depends_on:
       postgres:
@@ -92,7 +95,10 @@ services:
       LDAP_SYNC_DISABLE: ${LDAP_SYNC_DISABLE:-false}
       LDAP_SYNC_CRON: ${LDAP_SYNC_CRON}
   frontend:
-    image: intelloop/atlas-cmms-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: parquetempisque/atlas-cmms-frontend:local
     container_name: atlas-cmms-frontend
     environment:
         API_URL: ${PUBLIC_API_URL}
