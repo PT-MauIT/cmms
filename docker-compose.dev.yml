@@ -1,0 +1,30 @@
+# Dev-only overrides.
+#
+# Usage (local):
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d
+#
+# Or, simpler: set COMPOSE_FILE in your .env so plain `docker compose up -d`
+# works locally:
+#   COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml
+#
+# In production (Dokploy) leave Dokploy pointed at docker-compose.yml only.
+# Traefik handles ingress via labels there.
+
+services:
+  api:
+    # Host 8081 because Windows iphlpsvc reserves 8080 on this machine.
+    # Inside the container the backend still listens on 8080.
+    ports:
+      - "127.0.0.1:8081:8080"
+
+  frontend:
+    # Host 3001 because 3000 is taken by another local project.
+    ports:
+      - "127.0.0.1:3001:3000"
+
+  minio:
+    # The browser hits MinIO directly for downloads via PUBLIC_MINIO_ENDPOINT,
+    # so 9000 must be reachable from the host in dev. 9001 is the admin console.
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
