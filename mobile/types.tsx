@@ -56,7 +56,11 @@ export type RootStackParamList = {
         onSuccess?: (location: LocationMiniDTO) => void;
       }
     | undefined;
-  AddPart: undefined;
+  AddPart:
+    | {
+        onSuccess?: (part: PartMiniDTO) => void;
+      }
+    | undefined;
   AddMeter: undefined;
   AddUser:
     | {
@@ -155,6 +159,7 @@ export type RootStackParamList = {
   ScanAsset: {
     onChange?: (asset: AssetMiniDTO) => void;
   };
+  Feedback: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

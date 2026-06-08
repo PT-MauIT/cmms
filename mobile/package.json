@@ -1,6 +1,6 @@
 {
   "name": "atlas",
-  "version": "1.0.41",
+  "version": "1.0.42",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
@@ -43,6 +43,7 @@
     "expo-notifications": "~0.31.5",
     "expo-splash-screen": "~0.30.10",
     "expo-status-bar": "~2.2.3",
+    "expo-store-review": "~8.1.5",
     "expo-system-ui": "~5.0.11",
     "expo-updates": "~0.28.18",
     "expo-web-browser": "~14.2.0",

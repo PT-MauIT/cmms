@@ -97,6 +97,10 @@ public class User extends Audit {
     @JsonIgnore
     private SuperAccountRelation parentSuperAccount;
 
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private UserAppStats appStats = new UserAppStats();
+
     // SSO fields
     @Schema(description = "SSO provider name")
     private String ssoProvider;
